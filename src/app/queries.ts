@@ -46,3 +46,53 @@ export const getTrending = async (): Promise<{
     return { success: false, data: null };
   }
 };
+
+export interface CoinData {
+  id: string;
+  symbol: string;
+  name: string;
+  ath: number;
+  athDate: Date;
+  atl: number;
+  atlDate: Date;
+  volume: number;
+  hi24h: number;
+  lo24h: number;
+  rank: number;
+}
+
+export const getCoinData = async ({
+  id,
+}: {
+  id: string;
+}): Promise<{
+  data: CoinData | null;
+}> => {
+  const fetchUrl = getFetchUrl(
+    `/coins/${id}?community_data=false&developer_data=false&`
+  );
+
+  try {
+    const res = await fetch(fetchUrl);
+    const data = await res.json();
+
+    const coinData: CoinData = {
+      id: data.id,
+      symbol: data.symbol,
+      name: data.name,
+      ath: data.market_data.ath.usd,
+      athDate: new Date(data.market_data.ath_date.usd),
+      atl: data.market_data.atl.usd,
+      atlDate: new Date(data.market_data.atl_date.usd),
+      volume: data.market_data.total_volume.usd,
+      hi24h: data.market_data.high_24h.usd,
+      lo24h: data.market_data.low_24h.usd,
+      rank: data.market_cap_rank,
+    };
+
+    return { data: coinData };
+  } catch (err) {
+    console.error("Failed to fetch:", fetchUrl, err);
+    return { data: null };
+  }
+};

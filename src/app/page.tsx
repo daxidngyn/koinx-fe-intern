@@ -1,3 +1,6 @@
+import { notFound } from "next/navigation";
+import { getCoinData } from "./queries";
+
 import Breadcrumbs from "@/components/breadcrumbs";
 import Tabs from "@/components/tabs";
 import SimplePrice from "@/components/simple-price";
@@ -8,18 +11,18 @@ import TeamSection from "@/components/team";
 import GetStartedSection from "@/components/get-started";
 import TrendingCoins from "@/components/trending-coins";
 import Recommendations from "@/components/recommendations";
-import { getCoinData } from "./queries";
 
 export default async function Home() {
-  const data = await getCoinData({ id: "bitcoin" });
+  const { data } = await getCoinData({ id: "bitcoin" });
+  if (!data) return notFound();
+
   return (
     <main>
       <div className="w-full grow xl:flex xl:px-14 gap-x-5">
         <div className="px-4 xl:p-0 flex-1">
           <Breadcrumbs />
 
-          <SimplePrice />
-
+          <SimplePrice coinData={data} id="bitcoin" />
           <Tabs />
           <div className="space-y-4">
             <PerformanceSection />

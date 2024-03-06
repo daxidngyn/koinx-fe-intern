@@ -1,23 +1,31 @@
-import CaretUpIcon from "@/icons/caret-up-icon";
-import SimplePriceChart from "./chart";
 import { getPrice } from "@/app/queries";
+import SimplePriceChart from "./chart";
+import CaretUpIcon from "@/icons/caret-up-icon";
 
-export default async function SimplePrice() {
-  const { success, data } = await getPrice({ id: "bitcoin" });
+import type { CoinData } from "@/app/queries";
+
+export default async function SimplePrice({
+  id,
+  coinData,
+}: {
+  id: string;
+  coinData: CoinData;
+}) {
+  const { success, data } = await getPrice({ id: id });
 
   return (
     <div className="bg-transparent lg:bg-white rounded-lg border-[#DEE1E6] lg:border p-0 lg:p-6">
       <div className="flex items-center pb-[18px] lg:pb-0">
         <div className="bg-black w-8 h-8 lg:w-9 lg:h-9 rounded-full mr-2 lg:mr-2.5" />
         <h1 className="text-xl lg:text-2xl text-[#0B1426] font-semibold mr-2.5">
-          Bitcoin
+          {coinData.name}
         </h1>
         <span className="text-[#5D667B] font-semibold text-sm lg:text-base">
-          BTC
+          {coinData.symbol.toLocaleUpperCase()}
         </span>
 
         <div className="border-[#808A9D] border bg-[#768396] rounded-lg px-2.5 py-2 ml-8">
-          <span className="text-white font-medium">Rank #1</span>
+          <span className="text-white font-medium">Rank #{coinData.rank}</span>
         </div>
       </div>
 
@@ -63,7 +71,7 @@ export default async function SimplePrice() {
 
         <hr className="my-6 border-[#DEE1E6]" />
 
-        <SimplePriceChart />
+        <SimplePriceChart name={coinData.name} />
       </div>
     </div>
   );

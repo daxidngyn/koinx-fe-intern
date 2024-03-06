@@ -5,14 +5,14 @@ import { cn } from "@/utils/cn";
 
 const periods = ["1H", "24H", "7D", "1M", "3M", "6M", "1Y", "ALL"];
 
-export default function SimplePriceChart() {
+export default function SimplePriceChart({ name }: { name: string }) {
   const [selectedPeriod, setSelectedPeriod] = useState("7D");
 
   return (
     <div>
       <div className="mb-3 flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div className="text-[#0B1426] font-semibold text-sm lg:text-base">
-          Bitcoin Price Chart (USD)
+          {name} Price Chart (USD)
         </div>
         <div className="flex items-center gap-x-2 lg:gap-x-5 font-medium mt-2 lg:mt-0">
           {periods.map((period) => (
