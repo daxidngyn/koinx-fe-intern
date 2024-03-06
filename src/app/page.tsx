@@ -3,6 +3,7 @@ import Tabs from "@/components/tabs";
 import SimplePrice from "@/components/simple-price";
 import PerformanceSection from "@/components/performance";
 import SentimentSection from "@/components/sentiment";
+import AboutSection from "@/components/about";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <div className="space-y-4">
         <PerformanceSection />
         <SentimentSection />
+        <AboutSection />
       </div>
     </main>
   );
