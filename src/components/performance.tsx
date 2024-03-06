@@ -2,9 +2,9 @@ import Fundamentals from "./fundamentals";
 
 export default function PerformanceSection() {
   return (
-    <section className="bg-white border-[#DEE1E6] border shadow-sm rounded-lg p-4">
+    <section className="bg-white border-[#DEE1E6] border shadow-sm rounded-lg p-4 lg:p-6">
       <h3 className="text-[#0F1629] font-semibold text-2xl">Performance</h3>
-      <div className="mt-4 space-y-6">
+      <div className="mt-4 lg:mt-6 space-y-6">
         <div className="flex items-center">
           <div className="min-w-24 w-fit">
             <div className="text-[#44475B] text-sm whitespace-nowrap">

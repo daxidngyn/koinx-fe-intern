@@ -7,29 +7,38 @@ import AboutSection from "@/components/about";
 import TeamSection from "@/components/team";
 import GetStartedSection from "@/components/get-started";
 import TrendingCoins from "@/components/trending-coins";
+import Recommendations from "@/components/recommendations";
+import { getCoinData } from "./queries";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getCoinData({ id: "bitcoin" });
   return (
-    <main className="w-full grow lg:flex lg:px-14 gap-x-5">
-      <div className="px-4 lg:p-0 flex-1">
-        <Breadcrumbs />
+    <main>
+      <div className="w-full grow xl:flex xl:px-14 gap-x-5">
+        <div className="px-4 xl:p-0 flex-1">
+          <Breadcrumbs />
 
-        <SimplePrice />
+          <SimplePrice />
 
-        <Tabs />
-        <div className="space-y-4">
-          <PerformanceSection />
-          <SentimentSection />
-          <AboutSection />
-          <TeamSection />
+          <Tabs />
+          <div className="space-y-4">
+            <PerformanceSection />
+            <SentimentSection />
+            <AboutSection />
+            <TeamSection />
+          </div>
+        </div>
+
+        <div className="mt-8 xl:mt-16 xl:shrink-0 xl:max-w-sm 2xl:max-w-md">
+          <div className="px-4 xl:p-0">
+            <GetStartedSection />
+          </div>
+          <TrendingCoins />
         </div>
       </div>
 
-      <div className="mt-8 lg:mt-16 lg:shrink-0 lg:max-w-md">
-        <div className="px-4 lg:p-0">
-          <GetStartedSection />
-        </div>
-        <TrendingCoins />
+      <div className="hidden xl:block">
+        <Recommendations />
       </div>
     </main>
   );

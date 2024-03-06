@@ -18,7 +18,7 @@ const teamMembers = [
 
 export default function TeamSection() {
   return (
-    <section className="bg-white border-[#DEE1E6] border shadow-sm rounded-lg p-4">
+    <section className="bg-white border-[#DEE1E6] border shadow-sm rounded-lg p-4 lg:p-6">
       <h3 className="text-[#0F1629] font-semibold text-2xl">Team</h3>
       <div className="mt-4 space-y-6">
         <p className="leading-[26px]">
@@ -38,15 +38,17 @@ export default function TeamSection() {
         </div>
       </div>
 
-      <Recommendations />
+      <div className="lg:hidden">
+        <Recommendations />
+      </div>
     </section>
   );
 }
 
 const TeamCard = (props: { imageUrl: string; name: string }) => {
   return (
-    <div className="rounded-lg p-3 bg-[#E8F4FD] text-center">
-      <div className="flex flex-col items-center w-full">
+    <div className="rounded-lg p-4 bg-[#E8F4FD] text-center flex flex-col lg:flex-row">
+      <div className="flex flex-col items-center lg:items-center w-full">
         <Image
           src={props.imageUrl}
           alt={props.name}

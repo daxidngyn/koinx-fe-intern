@@ -17,7 +17,7 @@ export default function Tabs() {
   const [selectedTab, setSelectedTab] = useState("Overview");
 
   return (
-    <div className="flex items-center gap-x-8 my-5 overflow-x-scroll border-b border-[#D3E0E6]">
+    <div className="flex items-center gap-x-8 my-5 overflow-x-auto border-b border-[#D3E0E6]">
       {tabs.map((tab) => (
         <button
           type="button"

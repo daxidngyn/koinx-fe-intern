@@ -10,23 +10,28 @@ export default function SimplePriceChart() {
 
   return (
     <div>
-      <div className="mb-3">
-        <div className="text-[#0B1426] font-semibold text-sm">
+      <div className="mb-3 flex flex-col lg:flex-row lg:items-center lg:justify-between">
+        <div className="text-[#0B1426] font-semibold text-sm lg:text-base">
           Bitcoin Price Chart (USD)
         </div>
-        <div className="flex items-center gap-x-2 font-medium text-xs mt-2">
+        <div className="flex items-center gap-x-2 lg:gap-x-5 font-medium mt-2 lg:mt-0">
           {periods.map((period) => (
-            <div
+            <button
               key={period}
+              type="button"
               className={cn(
-                "rounded-full",
-                selectedPeriod === period
-                  ? "bg-[#E2ECFE] text-[#0141CF]"
-                  : "text-[#5D667B]"
+                "rounded-full font-medium text-xs lg:text-[13px] relative z-0",
+                selectedPeriod === period ? "text-[#0141CF]" : "text-[#5D667B]"
               )}
             >
               {period}
-            </div>
+              <div
+                className={cn(
+                  "bg-[#E2ECFE] w-6 lg:w-8 lg:h-5 h-full top-1/2 left-1/2 -z-10 rounded-full -translate-x-1/2 -translate-y-1/2",
+                  selectedPeriod === period ? "absolute" : "hidden"
+                )}
+              />
+            </button>
           ))}
         </div>
       </div>
