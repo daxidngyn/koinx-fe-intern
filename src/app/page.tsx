@@ -4,6 +4,7 @@ import SimplePrice from "@/components/simple-price";
 import PerformanceSection from "@/components/performance";
 import SentimentSection from "@/components/sentiment";
 import AboutSection from "@/components/about";
+import TeamSection from "@/components/team";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <PerformanceSection />
         <SentimentSection />
         <AboutSection />
+        <TeamSection />
       </div>
     </main>
   );
