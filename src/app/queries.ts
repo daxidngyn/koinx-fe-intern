@@ -29,3 +29,20 @@ export const getPrice = async ({
     return { success: false, data: null };
   }
 };
+
+export const getTrending = async (): Promise<{
+  success: boolean;
+  data: [] | null;
+}> => {
+  const fetchUrl = getFetchUrl(`/search/trending?`);
+
+  try {
+    const res = await fetch(fetchUrl);
+    const data = await res.json();
+
+    return { success: false, data: data.coins.map((coin: any) => coin.item) };
+  } catch (err) {
+    console.error("Failed to fetch:", fetchUrl, err);
+    return { success: false, data: null };
+  }
+};
