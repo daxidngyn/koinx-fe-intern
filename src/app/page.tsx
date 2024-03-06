@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/breadcrumbs";
 import SimplePrice from "@/components/simple-price";
+import Tabs from "@/components/tabs";
 
 export default function Home() {
   return (
@@ -17,6 +18,8 @@ export default function Home() {
       </div>
 
       <SimplePrice />
+
+      <Tabs />
     </main>
   );
 }
