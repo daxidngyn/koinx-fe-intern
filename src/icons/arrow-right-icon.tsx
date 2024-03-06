@@ -17,16 +17,16 @@ const AnglesRightIcon = React.forwardRef<SVGSVGElement, IconProps>(
       <path
         d="M14.0658 5.77144L1.56577 5.77144"
         stroke="#0F1629"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.02426 0.751099L14.0659 5.7711L9.02426 10.7919"
         stroke="#0F1629"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
