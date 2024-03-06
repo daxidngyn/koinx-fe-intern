@@ -11,7 +11,7 @@ import TrendingCoins from "@/components/trending-coins";
 export default function Home() {
   return (
     <main>
-      <div className="px-4">
+      <div className="px-4 lg:px-14">
         <Breadcrumbs />
 
         <div className="flex items-center pb-[18px]">
@@ -21,7 +21,7 @@ export default function Home() {
           </h1>
           <span className="text-[#5D667B] font-semibold text-sm">BTC</span>
 
-          <div className="border-[#808A9D] border bg-[#768396] rounded px-2.5 py-2 ml-8">
+          <div className="border-[#808A9D] border bg-[#768396] rounded-lg px-2.5 py-2 ml-8">
             <span className="text-white font-medium">Rank #1</span>
           </div>
         </div>
