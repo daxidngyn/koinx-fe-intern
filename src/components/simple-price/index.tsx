@@ -1,7 +1,10 @@
 import CaretUpIcon from "@/icons/caret-up-icon";
 import SimplePriceChart from "./chart";
+import { getPrice } from "@/app/queries";
 
 export default async function SimplePrice() {
+  const { success, data } = await getPrice({ id: "bitcoin" });
+
   return (
     <div className="bg-transparent lg:bg-white rounded-lg border-[#DEE1E6] lg:border p-0 lg:p-6">
       <div className="flex items-center pb-[18px] lg:pb-0">
@@ -18,22 +21,40 @@ export default async function SimplePrice() {
         </div>
       </div>
 
-      <div className="bg-white border-[#DEE1E6] border p-6 rounded-lg lg:border-none lg:p-0 mt-0 lg:mt-12">
+      <div className="bg-white border-[#DEE1E6] border p-6 rounded-lg lg:border-none lg:p-0 mt-0 xl:mt-10 2xl:mt-12">
         <div className="flex">
           <div>
             <h2 className="text-3xl font-semibold text-[#0B1426]">
-              $16,953.04
+              $
+              {data &&
+                data.usd.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h2>
             <span className="leading-8 font-medium text-[#0B1426]">
-              ₹ 13,42,343
+              ₹{" "}
+              {data &&
+                data.inr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </span>
           </div>
 
           <div className="flex h-fit items-center ml-8 mt-1">
-            <div className="bg-[#EBF9F4] text-[#14B079] px-2.5 py-1 rounded-md flex items-center gap-x-1.5">
-              <CaretUpIcon color="#14B079" />
-              <span className="font-medium">2.51%</span>
-            </div>
+            {data && data.usd_24h_change >= 0 ? (
+              <div>
+                <div className="bg-[#EBF9F4] text-[#14B079] px-2.5 py-1 rounded-md flex items-center gap-x-1.5">
+                  <CaretUpIcon color="#14B079" />
+                  <span className="font-medium">
+                    {data && data.usd_24h_change.toFixed(2)}%
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-[#fae9e9] text-[#FF4949] px-2.5 py-1 rounded-md flex items-center gap-x-1.5">
+                <CaretUpIcon color="#FF4949" className="rotate-180" />
+                <span className="font-medium">
+                  {data && data.usd_24h_change.toFixed(2)}%
+                </span>
+              </div>
+            )}
+
             <span className="text-sm font-medium text-[#768396] ml-3">
               (24H)
             </span>
