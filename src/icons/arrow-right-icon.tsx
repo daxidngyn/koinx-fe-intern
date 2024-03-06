@@ -2,7 +2,7 @@ import React from "react";
 
 import { cn } from "@/utils/cn";
 
-const AnglesRightIcon = React.forwardRef<SVGSVGElement, IconProps>(
+const ArrowRightIcon = React.forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
       ref={ref}
@@ -32,5 +32,5 @@ const AnglesRightIcon = React.forwardRef<SVGSVGElement, IconProps>(
   )
 );
 
-AnglesRightIcon.displayName = "Angles Right";
-export default AnglesRightIcon;
+ArrowRightIcon.displayName = "Arrow Right";
+export default ArrowRightIcon;
