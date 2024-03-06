@@ -5,6 +5,7 @@ import PerformanceSection from "@/components/performance";
 import SentimentSection from "@/components/sentiment";
 import AboutSection from "@/components/about";
 import TeamSection from "@/components/team";
+import GetStartedSection from "@/components/get-started";
 
 export default function Home() {
   return (
@@ -29,6 +30,10 @@ export default function Home() {
         <SentimentSection />
         <AboutSection />
         <TeamSection />
+      </div>
+
+      <div className="px-4 mt-8">
+        <GetStartedSection />
       </div>
     </main>
   );
