@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Recommendations from "./recommendations";
 
 const teamMembers = [
   {
@@ -36,6 +37,8 @@ export default function TeamSection() {
           ))}
         </div>
       </div>
+
+      <Recommendations />
     </section>
   );
 }
