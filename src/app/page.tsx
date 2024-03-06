@@ -1,8 +1,8 @@
 import Breadcrumbs from "@/components/breadcrumbs";
+import Tabs from "@/components/tabs";
+import SimplePrice from "@/components/simple-price";
 import PerformanceSection from "@/components/performance";
 import SentimentSection from "@/components/sentiment";
-import SimplePrice from "@/components/simple-price";
-import Tabs from "@/components/tabs";
 
 export default function Home() {
   return (
@@ -24,7 +24,6 @@ export default function Home() {
       <Tabs />
       <div className="space-y-4">
         <PerformanceSection />
-
         <SentimentSection />
       </div>
     </main>
