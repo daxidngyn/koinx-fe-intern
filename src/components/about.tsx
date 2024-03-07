@@ -61,37 +61,43 @@ export default function AboutSection() {
         </h3>
 
         <div className="mt-3.5 flex flex-col lg:flex-row lg:gap-x-8 space-y-3.5 lg:space-y-0">
-          <article className="bg-gradient-to-br from-[#79F1A4] to-[#0E5CAD] rounded-md flex p-[11px] items-center">
+          <article className="bg-gradient-to-br from-[#79F1A4] to-[#0E5CAD] rounded-md flex p-[12px] items-center">
             <Image
               src="/profits.png"
               alt="Calculate your profits"
               width={120}
               height={120}
+              className="xl:w-32 xl:h-32"
             />
             <div className="ml-6">
-              <div className="font-bold text-lg leading-[26px] text-white mr-2.5">
+              <div className="font-bold text-lg xl:text-xl leading-[26px] text-white mr-2.5">
                 Calculate your Profits
               </div>
-              <button className="bg-white text-black px-3 py-0.5 rounded-lg flex items-center mt-3.5">
-                <span className="text-[#0F1629] mr-2.5">Check now</span>
+              <button className="bg-white text-black px-3 py-0.5 xl:px-3.5 xl:py-1 rounded-lg flex items-center mt-3.5">
+                <span className="text-[#0F1629] mr-2.5 xl:font-semibold xl:text-sm">
+                  Check now
+                </span>
                 <ArrowRightIcon />
               </button>
             </div>
           </article>
 
-          <article className="bg-gradient-to-br from-[#FF9865] to-[#EF3031] rounded-md flex p-[11px] items-center">
+          <article className="bg-gradient-to-br from-[#FF9865] to-[#EF3031] rounded-md flex p-[12px] items-center">
             <Image
-              src="/profits.png"
-              alt="Calculate your profits"
+              src="/tax-liability.png"
+              alt="Tax liability"
               width={120}
               height={120}
+              className="xl:w-32 xl:h-32"
             />
             <div className="ml-6">
-              <div className="font-bold text-lg leading-[26px] text-white">
+              <div className="font-bold text-lg xl:text-xl leading-[26px] text-white">
                 Calculate your tax liability
               </div>
-              <button className="bg-white text-black px-3 py-0.5 rounded-lg flex items-center mt-3.5">
-                <span className="text-[#0F1629] mr-2.5">Check now</span>
+              <button className="bg-white text-black px-3 py-0.5 xl:px-3.5 xl:py-1 rounded-lg flex items-center mt-3.5">
+                <span className="text-[#0F1629] mr-2.5 xl:font-semibold xl:text-sm">
+                  Check now
+                </span>
                 <ArrowRightIcon />
               </button>
             </div>

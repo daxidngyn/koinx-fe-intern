@@ -47,7 +47,7 @@ export default function TokenomicsSection() {
                 anchor: "right",
                 direction: "column",
                 justify: false,
-                translateX: -200,
+                translateX: -190,
                 translateY: 0,
                 itemWidth: 100,
                 itemHeight: 20,
