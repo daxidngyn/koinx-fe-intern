@@ -38,9 +38,9 @@ export default async function SimplePrice({
       <div className="bg-white border-[#DEE1E6] border p-6 rounded-lg lg:border-none lg:p-0 lg:mt-10 2xl:mt-12">
         <div className="flex">
           <div>
-            <h2 className="text-3xl font-semibold text-[#0B1426]">
+            <span className="text-3xl font-semibold text-[#0B1426]">
               ${data.usd.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </h2>
+            </span>
             <span className="leading-8 font-medium text-[#0B1426]">
               ₹ {data.inr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </span>

@@ -20,11 +20,11 @@ const data = [
 export default function TokenomicsSection() {
   return (
     <section className="bg-white border-[#DEE1E6] border shadow-sm rounded-lg lg:p-6 hidden xl:block">
-      <h3 className="text-[#0F1629] font-semibold text-2xl">Tokenomics</h3>
+      <h2 className="text-[#0F1629] font-semibold text-2xl">Tokenomics</h2>
       <div className="mt-6">
-        <div className="font-semibold text-xl text-[#1D1D1D]">
+        <h3 className="font-semibold text-xl text-[#1D1D1D]">
           Initial Distribution
-        </div>
+        </h3>
 
         <div
           className="h-48 relative flex my-4 items-center justify-center -translate-x-80"
