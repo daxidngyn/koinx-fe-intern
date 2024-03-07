@@ -1,6 +1,12 @@
 import Fundamentals from "./fundamentals";
 
-export default function PerformanceSection() {
+import type { CoinData } from "@/app/queries";
+
+export default function PerformanceSection({
+  coinData,
+}: {
+  coinData: CoinData;
+}) {
   return (
     <section className="bg-white border-[#DEE1E6] border shadow-sm rounded-lg p-4 lg:p-6">
       <h3 className="text-[#0F1629] font-semibold text-2xl">Performance</h3>
@@ -10,7 +16,9 @@ export default function PerformanceSection() {
             <div className="text-[#44475B] text-sm whitespace-nowrap">
               Today{"'"}s Low
             </div>
-            <div className="leading-10">46,930.22</div>
+            <div className="leading-10">
+              {coinData.lo24h.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </div>
           </div>
 
           <div
@@ -25,7 +33,9 @@ export default function PerformanceSection() {
             <div className="text-[#44475B] text-sm whitespace-nowrap">
               Today{"'"}s High
             </div>
-            <div className="leading-10">49,343.83</div>
+            <div className="leading-10">
+              {coinData.hi24h.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </div>
           </div>
         </div>
 
@@ -54,7 +64,7 @@ export default function PerformanceSection() {
         </div>
       </div>
 
-      <Fundamentals />
+      <Fundamentals coinData={coinData} />
     </section>
   );
 }

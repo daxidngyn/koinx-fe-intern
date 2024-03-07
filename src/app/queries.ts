@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 const getFetchUrl = (param: string) => {
   return `${process.env.KOINX_API_URL}${param}${process.env.KOINX_API_KEY}`;
 };
@@ -51,14 +53,18 @@ export interface CoinData {
   id: string;
   symbol: string;
   name: string;
+  rank: number;
+  price: number;
+  marketCap: number;
+  volume: number;
   ath: number;
+  athChangePercentage: number;
   athDate: Date;
   atl: number;
+  atlChangePercentage: number;
   atlDate: Date;
-  volume: number;
   hi24h: number;
   lo24h: number;
-  rank: number;
 }
 
 export const getCoinData = async ({
@@ -73,22 +79,28 @@ export const getCoinData = async ({
   );
 
   try {
-    const res = await fetch(fetchUrl);
+    const res = await fetch(fetchUrl, { cache: "no-store" });
     const data = await res.json();
 
     const coinData: CoinData = {
       id: data.id,
       symbol: data.symbol,
       name: data.name,
+      rank: data.market_cap_rank,
+      price: data.market_data.current_price.usd,
+      marketCap: data.market_data.market_cap.usd,
+      volume: data.market_data.total_volume.usd,
       ath: data.market_data.ath.usd,
+      athChangePercentage: data.market_data.ath_change_percentage.usd,
       athDate: new Date(data.market_data.ath_date.usd),
       atl: data.market_data.atl.usd,
+      atlChangePercentage: data.market_data.atl_change_percentage.usd,
       atlDate: new Date(data.market_data.atl_date.usd),
-      volume: data.market_data.total_volume.usd,
       hi24h: data.market_data.high_24h.usd,
       lo24h: data.market_data.low_24h.usd,
-      rank: data.market_cap_rank,
     };
+
+    console.log(coinData);
 
     return { data: coinData };
   } catch (err) {

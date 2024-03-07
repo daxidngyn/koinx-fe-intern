@@ -25,7 +25,7 @@ export default async function Home() {
           <SimplePrice coinData={data} id="bitcoin" />
           <Tabs />
           <div className="space-y-4">
-            <PerformanceSection />
+            <PerformanceSection coinData={data} />
             <SentimentSection />
             <AboutSection />
             <TeamSection />
