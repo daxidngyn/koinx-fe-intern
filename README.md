@@ -1,3 +1,3 @@
-# KoinX FE Intern
+# KoinX FE Intern Assignment
 
 David Nguyen
