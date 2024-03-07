@@ -1,5 +1,3 @@
-import { cache } from "react";
-
 const getFetchUrl = (param: string) => {
   return `${process.env.KOINX_API_URL}${param}${process.env.KOINX_API_KEY}`;
 };
@@ -9,7 +7,6 @@ export const getPrice = async ({
 }: {
   id: string;
 }): Promise<{
-  success: boolean;
   data: {
     inr: number;
     inr_24h_change: number;
@@ -25,16 +22,15 @@ export const getPrice = async ({
     const res = await fetch(fetchUrl);
     const data = await res.json();
 
-    return { success: false, data: data[id] };
+    return { data: data[id] };
   } catch (err) {
     console.error("Failed to fetch:", fetchUrl, err);
-    return { success: false, data: null };
+    return { data: null };
   }
 };
 
 export const getTrending = async (): Promise<{
-  success: boolean;
-  data: [] | null;
+  data: [];
 }> => {
   const fetchUrl = getFetchUrl(`/search/trending?`);
 
@@ -42,10 +38,10 @@ export const getTrending = async (): Promise<{
     const res = await fetch(fetchUrl);
     const data = await res.json();
 
-    return { success: false, data: data.coins.map((coin: any) => coin.item) };
+    return { data: data.coins.map((coin: any) => coin.item) };
   } catch (err) {
     console.error("Failed to fetch:", fetchUrl, err);
-    return { success: false, data: null };
+    return { data: [] };
   }
 };
 
@@ -99,8 +95,6 @@ export const getCoinData = async ({
       hi24h: data.market_data.high_24h.usd,
       lo24h: data.market_data.low_24h.usd,
     };
-
-    console.log(coinData);
 
     return { data: coinData };
   } catch (err) {

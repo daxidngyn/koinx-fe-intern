@@ -11,7 +11,8 @@ export default async function SimplePrice({
   id: string;
   coinData: CoinData;
 }) {
-  const { success, data } = await getPrice({ id: id });
+  const { data } = await getPrice({ id: id });
+  if (!data) return null;
 
   return (
     <div className="bg-transparent lg:bg-white rounded-lg border-[#DEE1E6] lg:border p-0 lg:p-6">
@@ -33,24 +34,20 @@ export default async function SimplePrice({
         <div className="flex">
           <div>
             <h2 className="text-3xl font-semibold text-[#0B1426]">
-              $
-              {data &&
-                data.usd.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              ${data.usd.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </h2>
             <span className="leading-8 font-medium text-[#0B1426]">
-              ₹{" "}
-              {data &&
-                data.inr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              ₹ {data.inr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </span>
           </div>
 
           <div className="flex h-fit items-center ml-8 mt-1">
-            {data && data.usd_24h_change >= 0 ? (
+            {data.usd_24h_change >= 0 ? (
               <div>
                 <div className="bg-[#EBF9F4] text-[#14B079] px-2.5 py-1 rounded-md flex items-center gap-x-1.5">
                   <CaretUpIcon color="#14B079" />
                   <span className="font-medium">
-                    {data && data.usd_24h_change.toFixed(2)}%
+                    {data.usd_24h_change.toFixed(2)}%
                   </span>
                 </div>
               </div>
@@ -58,7 +55,7 @@ export default async function SimplePrice({
               <div className="bg-[#fae9e9] text-[#FF4949] px-2.5 py-1 rounded-md flex items-center gap-x-1.5">
                 <CaretUpIcon color="#FF4949" className="rotate-180" />
                 <span className="font-medium">
-                  {data && data.usd_24h_change.toFixed(2)}%
+                  {data.usd_24h_change.toFixed(2)}%
                 </span>
               </div>
             )}
