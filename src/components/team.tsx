@@ -38,7 +38,7 @@ export default function TeamSection() {
         </div>
       </div>
 
-      <div className="lg:hidden">
+      <div className="xl:hidden">
         <Recommendations />
       </div>
     </section>

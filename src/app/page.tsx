@@ -14,7 +14,7 @@ import Recommendations from "@/components/recommendations";
 
 export default async function Home() {
   const { data } = await getCoinData({ id: "bitcoin" });
-  if (!data) return notFound();
+  if (!data || !Object.keys(data).length) return notFound();
 
   return (
     <main>
