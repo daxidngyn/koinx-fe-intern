@@ -1,4 +1,4 @@
-import { getPrice } from "@/app/queries";
+import { getCoinMarketData, getPrice } from "@/app/queries";
 import SimplePriceChart from "./chart";
 import CaretUpIcon from "@/icons/caret-up-icon";
 
@@ -13,6 +13,11 @@ export default async function SimplePrice({
 }) {
   const { data } = await getPrice({ id: id });
   if (!data) return null;
+
+  const { data: marketData } = await getCoinMarketData({
+    id: id,
+    period: "7D",
+  });
 
   return (
     <div className="bg-transparent lg:bg-white rounded-lg border-[#DEE1E6] lg:border p-0 lg:p-6">
@@ -68,7 +73,7 @@ export default async function SimplePrice({
 
         <hr className="my-6 border-[#DEE1E6]" />
 
-        <SimplePriceChart name={coinData.name} />
+        <SimplePriceChart name={coinData.name} marketData={marketData} />
       </div>
     </div>
   );

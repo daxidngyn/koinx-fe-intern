@@ -102,3 +102,45 @@ export const getCoinData = async ({
     return { data: null };
   }
 };
+
+const dayMap = {
+  "1H": 1,
+  "24H": 1,
+  "7D": 7,
+  "1M": 30,
+  "3M": 91,
+  "6M": 182,
+  "1Y": 365,
+};
+
+export const getCoinMarketData = async ({
+  id,
+  period,
+}: {
+  id: string;
+  period: keyof typeof dayMap;
+}): Promise<{
+  data: [];
+}> => {
+  const days = dayMap[period];
+  const fetchUrl = getFetchUrl(
+    `/coins/${id}/market_chart?vs_currency=usd&days=${days}?`
+  );
+
+  try {
+    const res = await fetch(fetchUrl);
+    const data = await res.json();
+
+    const marketData = data.prices.map((price: number[]) => {
+      return {
+        x: new Date(price[0]),
+        y: price[1],
+      };
+    });
+
+    return { data: marketData };
+  } catch (err) {
+    console.error("Failed to fetch:", fetchUrl, err);
+    return { data: [] };
+  }
+};

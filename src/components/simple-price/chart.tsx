@@ -1,11 +1,18 @@
 "use client";
 
-import React, { useEffect, useState, useRef, memo } from "react";
+import { useState } from "react";
+import { ResponsiveLine } from "@nivo/line";
 import { cn } from "@/utils/cn";
 
 const periods = ["1H", "24H", "7D", "1M", "3M", "6M", "1Y", "ALL"];
 
-export default function SimplePriceChart({ name }: { name: string }) {
+export default function SimplePriceChart({
+  name,
+  marketData,
+}: {
+  name: string;
+  marketData: { x: number; y: number }[];
+}) {
   const [selectedPeriod, setSelectedPeriod] = useState("7D");
 
   return (
@@ -36,51 +43,82 @@ export default function SimplePriceChart({ name }: { name: string }) {
         </div>
       </div>
 
-      <TradingViewWidget />
+      <div
+        style={{ width: "99%" }}
+        className="h-80 relative flex-1 min-w-0 flex flex-col justify-center items-center"
+      >
+        <Chart marketData={marketData} />
+      </div>
     </div>
   );
 }
 
-const TradingViewWidget = memo(() => {
-  const container = useRef();
+const Chart = ({ marketData }: { marketData: { x: number; y: number }[] }) => {
+  if (!marketData) return null;
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = `
-        {
-          "autosize": true,
-          "symbol": "BITSTAMP:BTCUSD",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "light",
-          "style": "1",
-          "locale": "en",
-          "enable_publishing": false,
-          "hide_top_toolbar": true,
-          "hide_legend": true,
-          "allow_symbol_change": true,
-          "calendar": false,
-          "support_host": "https://www.tradingview.com"
-        }`;
-    container.current.appendChild(script);
-  }, []);
+  const data = [
+    {
+      id: `${name} Price Chart (USD)`,
+      data: [...marketData],
+    },
+  ];
 
   return (
-    <div
-      className="tradingview-widget-container"
-      ref={container}
-      style={{ height: "100%", width: "100%" }}
-    >
-      <div
-        className="tradingview-widget-container__widget"
-        style={{ height: "calc(100% - 32px)", width: "100%" }}
-      ></div>
-    </div>
-  );
-});
+    <ResponsiveLine
+      data={data}
+      colors="#0052FE"
+      margin={{ top: 15, right: 15, bottom: 25, left: 42 }}
+      xScale={{ type: "time" }}
+      yScale={{
+        type: "linear",
+        min: "auto",
+        max: "auto",
+        stacked: true,
+        reverse: false,
+      }}
+      yFormat=" >-.2f"
+      axisTop={null}
+      axisRight={null}
+      axisBottom={{
+        tickValues: 6,
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        truncateTickAt: 0,
+        format: "%d %b",
+      }}
+      axisLeft={{
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        truncateTickAt: 0,
+      }}
+      enableGridX={false}
+      enablePoints={false}
+      enableTouchCrosshair={true}
+      useMesh={true}
+      tooltip={({ point }) => {
+        const { x: date, y: price } = point.data;
 
-TradingViewWidget.displayName = "TradingView Widget";
+        return (
+          <div className="rounded bg-white px-2.5 py-1 shadow-md ring-1 ring-gray-200">
+            <div className="flex flex-col">
+              <span className="text-xs font-semibold">
+                ${parseFloat(price.toString()).toFixed(2)}
+              </span>
+              <span className="text-xs font-medium">
+                {new Date(date).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </span>
+            </div>
+          </div>
+        );
+      }}
+    />
+  );
+};

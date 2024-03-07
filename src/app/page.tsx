@@ -19,7 +19,7 @@ export default async function Home() {
   return (
     <main>
       <div className="w-full grow xl:flex xl:px-14 gap-x-5">
-        <div className="px-4 xl:p-0 flex-1">
+        <div className="px-4 xl:p-0 flex-1 shrink">
           <Breadcrumbs />
 
           <SimplePrice coinData={data} id="bitcoin" />
