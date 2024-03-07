@@ -7,7 +7,7 @@ const navItems = ["Crypto Taxes", "Free Tools", "Resource Center"];
 export default function Header() {
   return (
     <header className="bg-white">
-      <div className="flex w-full justify-between items-center px-7 lg:px-14 py-6 lg:py-8 shadow-sm">
+      <div className="flex w-full justify-between items-center px-8 md:px-12 lg:px-8 xl:px-14 py-6 lg:py-8 shadow-sm">
         <div>
           <Image width={85} height={85} src="logo.svg" alt="KoinX logo" />
         </div>

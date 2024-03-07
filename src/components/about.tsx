@@ -11,7 +11,7 @@ export default function AboutSection() {
           <h3 className="font-bold text-lg text-[#0B1426] leading-[26px]">
             What is Bitcoin?
           </h3>
-          <p className="leading-[26px] lg:mt-2.5 text-[#3E424A]">
+          <p className="leading-[26px] mt-2.5 text-[#3E424A]">
             Bitcoin’s price today is US$16,951.82, with a 24-hour trading volume
             of $19.14 B. BTC is +0.36% in the last 24 hours. It is currently
             -7.70% from its 7-day all-time high of $18,366.66, and 3.40% from

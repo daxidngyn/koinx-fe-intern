@@ -35,7 +35,7 @@ export default async function SimplePrice({
         </div>
       </div>
 
-      <div className="bg-white border-[#DEE1E6] border p-6 rounded-lg lg:border-none lg:p-0 mt-0 xl:mt-10 2xl:mt-12">
+      <div className="bg-white border-[#DEE1E6] border p-6 rounded-lg lg:border-none lg:p-0 lg:mt-10 2xl:mt-12">
         <div className="flex">
           <div>
             <h2 className="text-3xl font-semibold text-[#0B1426]">
