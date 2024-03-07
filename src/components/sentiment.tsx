@@ -1,6 +1,5 @@
 import InfoIcon from "@/icons/info-icon";
 import NewsIcon from "@/icons/news-icon";
-import Fundamentals from "./fundamentals";
 import ChartUpIcon from "@/icons/chart-up-icon";
 
 export default function SentimentSection() {
@@ -12,9 +11,6 @@ export default function SentimentSection() {
       <div className="space-y-4 lg:space-y-8 mt-4">
         <KeyEvents />
         <AnalystEstimates />
-      </div>
-      <div>
-        <Fundamentals />
       </div>
     </section>
   );

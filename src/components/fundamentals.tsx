@@ -1,7 +1,7 @@
 import { CoinData } from "@/app/queries";
 import InfoIcon from "@/icons/info-icon";
 
-const fundamentalsKeys: { id: keyof CoinData; title: string }[] = [
+const fundamentalsKeys: { id: keyof CoinData | null; title: string }[] = [
   { id: "price", title: "Bitcoin Price" },
   { id: "ath", title: "24h Low / 24h High" },
   { id: null, title: "7d Low / 7d High" },
@@ -15,7 +15,7 @@ const fundamentalsKeys: { id: keyof CoinData; title: string }[] = [
 ];
 
 export default function Fundamentals({ coinData }: { coinData: CoinData }) {
-  if (!coinData) return <div></div>;
+  if (!coinData) return null;
 
   const fundamentals = fundamentalsKeys.map((fundamental) => {
     const key = fundamental.title;
@@ -168,28 +168,6 @@ export default function Fundamentals({ coinData }: { coinData: CoinData }) {
             </div>
           ))}
         </div>
-        {/* <div className="w-1/2">
-          {fundamentalsKeys.slice(0, 5).map((data) => (
-            <div
-              className="flex items-center justify-between py-4 border-b border-[#E7E7E7]"
-              key={data}
-            >
-              <div className="text-[#768396] font-medium text-sm">{data}</div>
-              <div className="text-[#111827] font-medium text-sm">x</div>
-            </div>
-          ))}
-        </div>
-        <div className="w-1/2">
-          {fundamentalsKeys.slice(5, fundamentalsKeys.length).map((data) => (
-            <div
-              className="flex items-center justify-between py-4 border-b border-[#E7E7E7]"
-              key={data}
-            >
-              <div className="text-[#768396] font-medium text-sm">{data}</div>
-              <div className="text-[#111827] font-medium text-sm">x</div>
-            </div>
-          ))}
-        </div> */}
       </div>
     </div>
   );
