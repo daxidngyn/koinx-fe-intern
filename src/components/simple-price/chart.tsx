@@ -47,13 +47,19 @@ export default function SimplePriceChart({
         style={{ width: "99%" }}
         className="h-80 relative flex-1 min-w-0 flex flex-col justify-center items-center"
       >
-        <Chart marketData={marketData} />
+        <Chart name={name} marketData={marketData} />
       </div>
     </div>
   );
 }
 
-const Chart = ({ marketData }: { marketData: { x: number; y: number }[] }) => {
+const Chart = ({
+  name,
+  marketData,
+}: {
+  name: string;
+  marketData: { x: number; y: number }[];
+}) => {
   if (!marketData) return null;
 
   const data = [
