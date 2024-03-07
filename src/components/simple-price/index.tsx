@@ -3,6 +3,7 @@ import SimplePriceChart from "./chart";
 import CaretUpIcon from "@/icons/caret-up-icon";
 
 import type { CoinData } from "@/app/queries";
+import Image from "next/image";
 
 export default async function SimplePrice({
   id,
@@ -22,7 +23,13 @@ export default async function SimplePrice({
   return (
     <div className="bg-transparent lg:bg-white rounded-lg border-[#DEE1E6] lg:border p-0 lg:p-6">
       <div className="flex items-center pb-[18px] lg:pb-0">
-        <div className="bg-black w-8 h-8 lg:w-9 lg:h-9 rounded-full mr-2 lg:mr-2.5" />
+        <Image
+          src={coinData.imageUrl}
+          alt={coinData.name}
+          width={32}
+          height={32}
+          className="lg:w-9 lg:h-9 rounded-full mr-2 lg:mr-2.5"
+        />
         <h1 className="text-xl lg:text-2xl text-[#0B1426] font-semibold mr-2.5">
           {coinData.name}
         </h1>
@@ -38,9 +45,9 @@ export default async function SimplePrice({
       <div className="bg-white border-[#DEE1E6] border p-6 rounded-lg lg:border-none lg:p-0 lg:mt-10 2xl:mt-12">
         <div className="flex">
           <div>
-            <span className="text-3xl font-semibold text-[#0B1426]">
+            <div className="text-3xl font-semibold text-[#0B1426]">
               ${data.usd.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-            </span>
+            </div>
             <span className="leading-8 font-medium text-[#0B1426]">
               ₹ {data.inr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </span>

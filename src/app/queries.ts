@@ -34,7 +34,7 @@ export interface TrendingCoinData {
   name: string;
   symbol: string;
   imageUrl: string;
-  price: number;
+  price: string;
   priceChangePercentage24h: number;
   marketCap: number;
   volume: number;
@@ -52,12 +52,17 @@ export const getTrending = async (): Promise<{
 
     const trendingCoinData: TrendingCoinData[] = data.coins.map((coin: any) => {
       const item = coin.item;
+
       return {
         id: item.id,
         name: item.name,
         symbol: item.symbol,
         imageUrl: item.small,
-        price: item.data.price,
+        price: !isNaN(item.data.price.substring(1, item.data.price.length))
+          ? `$${parseFloat(
+              item.data.price.substring(1, item.data.price.length)
+            ).toFixed(2)}`
+          : "$0.00",
         priceChangePercentage24h: item.data.price_change_percentage_24h.usd,
         marketCap: item.data.market_cap,
         volume: item.data.total_volume,
@@ -88,6 +93,7 @@ export interface CoinData {
   atlDate: Date;
   hi24h: number;
   lo24h: number;
+  imageUrl: string;
 }
 
 export const getCoinData = async ({
@@ -121,6 +127,7 @@ export const getCoinData = async ({
       atlDate: new Date(data.market_data.atl_date.usd),
       hi24h: data.market_data.high_24h.usd,
       lo24h: data.market_data.low_24h.usd,
+      imageUrl: data.image.small,
     };
 
     return { data: coinData };

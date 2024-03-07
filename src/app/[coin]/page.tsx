@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getCoinData } from "./queries";
+import { getCoinData } from "../queries";
 
 import Breadcrumbs from "@/components/breadcrumbs";
 import Tabs from "@/components/tabs";
@@ -13,17 +13,19 @@ import TrendingCoins from "@/components/trending-coins";
 import Recommendations from "@/components/recommendations";
 import TokenomicsSection from "@/components/tokenomics";
 
-export default async function Home() {
-  const { data } = await getCoinData({ id: "bitcoin" });
+export default async function Home({ params }: { params: { coin: string } }) {
+  if (!params.coin) return notFound();
+
+  const { data } = await getCoinData({ id: params.coin });
   if (!data || !Object.keys(data).length) return notFound();
 
   return (
     <main>
       <div className="w-full grow xl:flex xl:px-14 gap-x-5">
         <div className="px-4 md:px-8 xl:p-0 flex-1 shrink">
-          <Breadcrumbs />
+          <Breadcrumbs currentCoin={data.name} />
 
-          <SimplePrice coinData={data} id="bitcoin" />
+          <SimplePrice coinData={data} id={params.coin} />
           <Tabs />
           <div className="space-y-4">
             <PerformanceSection coinData={data} />

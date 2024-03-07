@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getTrending } from "@/app/queries";
 import CaretUpIcon from "@/icons/caret-up-icon";
 
@@ -14,7 +15,11 @@ export default async function TrendingCoins() {
 
       <div className="mt-6 space-y-5">
         {data.slice(0, 3).map((coin: any) => (
-          <div key={coin.id} className="flex items-center justify-between">
+          <Link
+            href={`/${coin.id}`}
+            key={coin.id}
+            className="flex items-center justify-between"
+          >
             <div className="flex items-center">
               <Image
                 src={coin.imageUrl}
@@ -44,7 +49,7 @@ export default async function TrendingCoins() {
                 </div>
               )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
