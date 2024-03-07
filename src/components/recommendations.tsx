@@ -27,7 +27,7 @@ export default async function Recommendations() {
                 <div className="p-2.5 lg:p-4 border-[#E3E3E3] border rounded-lg xl:min-w-60">
                   <div className="flex items-center">
                     <Image
-                      src={coin.small}
+                      src={coin.imageUrl}
                       alt={coin.symbol}
                       width={16}
                       height={16}
@@ -39,13 +39,13 @@ export default async function Recommendations() {
                     <div
                       className={cn(
                         "text-[8px] lg:text-sm p-[3px] rounded-sm",
-                        coin.data.price_change_percentage_24h.usd < 0
+                        coin.priceChangePercentage24h < 0
                           ? "bg-[#fae9e9] text-[#FF4949]"
                           : "text-[#32BE88] bg-[#0AB27D0F]"
                       )}
                     >
-                      {coin.data.price_change_percentage_24h.usd > 0 && "+"}
-                      {coin.data.price_change_percentage_24h.usd.toFixed(2)}%
+                      {coin.priceChangePercentage24h > 0 && "+"}
+                      {coin.priceChangePercentage24h.toFixed(2)}%
                     </div>
                   </div>
 
@@ -55,7 +55,7 @@ export default async function Recommendations() {
 
                   <div className="h-16 mt-4 flex items-center justify-center">
                     <Image
-                      src={coin.data.sparkline}
+                      src={coin.sparklineUrl}
                       alt={`${coin.symbol} sparkline`}
                       width={200}
                       height={200}
@@ -84,7 +84,7 @@ export default async function Recommendations() {
                 <div className="p-2.5 lg:p-4 border-[#E3E3E3] border rounded-lg xl:min-w-60">
                   <div className="flex items-center">
                     <Image
-                      src={coin.small}
+                      src={coin.imageUrl}
                       alt={coin.symbol}
                       width={16}
                       height={16}
@@ -96,13 +96,13 @@ export default async function Recommendations() {
                     <div
                       className={cn(
                         "text-[8px] lg:text-sm p-[3px] rounded-sm",
-                        coin.data.price_change_percentage_24h.usd < 0
+                        coin.priceChangePercentage24h < 0
                           ? "bg-[#fae9e9] text-[#FF4949]"
                           : "text-[#32BE88] bg-[#0AB27D0F]"
                       )}
                     >
-                      {coin.data.price_change_percentage_24h.usd > 0 && "+"}
-                      {coin.data.price_change_percentage_24h.usd.toFixed(2)}%
+                      {coin.priceChangePercentage24h > 0 && "+"}
+                      {coin.priceChangePercentage24h.toFixed(2)}%
                     </div>
                   </div>
 
@@ -112,7 +112,7 @@ export default async function Recommendations() {
 
                   <div className="h-16 mt-4 flex items-center justify-center">
                     <Image
-                      src={coin.data.sparkline}
+                      src={coin.sparklineUrl}
                       alt={`${coin.symbol} sparkline`}
                       width={200}
                       height={200}

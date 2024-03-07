@@ -17,7 +17,7 @@ export default async function TrendingCoins() {
           <div key={coin.id} className="flex items-center justify-between">
             <div className="flex items-center">
               <Image
-                src={coin.small}
+                src={coin.imageUrl}
                 alt={coin.symbol}
                 width={24}
                 height={24}
@@ -28,18 +28,18 @@ export default async function TrendingCoins() {
               </div>
             </div>
             <div>
-              {coin.data.price_change_percentage_24h.usd >= 0 ? (
+              {coin.priceChangePercentage24h >= 0 ? (
                 <div className="bg-[#EBF9F4] rounded-lg px-2.5 py-2 flex items-center">
                   <CaretUpIcon color="#14B079" className="mr-2" />
                   <span className="font-medium text-[#14B079]">
-                    {coin.data.price_change_percentage_24h.usd.toFixed(2)}%
+                    {coin.priceChangePercentage24h.toFixed(2)}%
                   </span>
                 </div>
               ) : (
                 <div className="bg-[#fae9e9] rounded-lg px-2.5 py-2 flex items-center">
                   <CaretUpIcon color="#FF4949" className="mr-2 rotate-180" />
                   <span className="font-medium text-[#FF4949]">
-                    {coin.data.price_change_percentage_24h.usd.toFixed(2)}%
+                    {coin.priceChangePercentage24h.toFixed(2)}%
                   </span>
                 </div>
               )}

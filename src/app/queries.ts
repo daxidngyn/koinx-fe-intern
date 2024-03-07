@@ -29,8 +29,20 @@ export const getPrice = async ({
   }
 };
 
+export interface TrendingCoinData {
+  id: string;
+  name: string;
+  symbol: string;
+  imageUrl: string;
+  price: number;
+  priceChangePercentage24h: number;
+  marketCap: number;
+  volume: number;
+  sparklineUrl: string;
+}
+
 export const getTrending = async (): Promise<{
-  data: [];
+  data: TrendingCoinData[];
 }> => {
   const fetchUrl = getFetchUrl(`/search/trending?`);
 
@@ -38,7 +50,22 @@ export const getTrending = async (): Promise<{
     const res = await fetch(fetchUrl);
     const data = await res.json();
 
-    return { data: data.coins.map((coin: any) => coin.item) };
+    const trendingCoinData: TrendingCoinData[] = data.coins.map((coin: any) => {
+      const item = coin.item;
+      return {
+        id: item.id,
+        name: item.name,
+        symbol: item.symbol,
+        imageUrl: item.small,
+        price: item.data.price,
+        priceChangePercentage24h: item.data.price_change_percentage_24h.usd,
+        marketCap: item.data.market_cap,
+        volume: item.data.total_volume,
+        sparklineUrl: item.data.sparkline,
+      };
+    });
+
+    return { data: trendingCoinData };
   } catch (err) {
     console.error("Failed to fetch:", fetchUrl, err);
     return { data: [] };
